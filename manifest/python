@@ -1,0 +1,6 @@
+#!/bin/sh
+
+__package python3
+__package python3-pip
+__package python3-venv
+__package python3-dev
