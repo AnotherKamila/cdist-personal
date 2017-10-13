@@ -1,0 +1,19 @@
+#!/bin/sh
+
+user=$(cat "$__object/parameter/user")
+netzh_id=$(cat "$__object/parameter/netzh-id" 2>/dev/null || echo "$__object_id")
+
+##### memcached #############################################################
+
+__package memcached
+
+##### memtier ###############################################################
+
+memtier_repo="/home/$user/memtier"
+memtier_url="https://github.com/RedisLabs/memtier_benchmark.git"
+
+for pkg in build-essential autoconf automake libpcre3-dev libevent-dev pkg-config zlib1g-dev; do
+    __package $pkg
+done
+
+require="$require __user/$user" __git $memtier_repo --source $memtier_url --owner $user

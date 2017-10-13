@@ -1,0 +1,14 @@
+#!/bin/sh
+
+user=$(cat "$__object/parameter/user")
+
+memtier_repo="/home/$user/memtier"
+
+cat <<EOF
+which memtier_benchmark >/dev/null && exit 0
+cd $memtier_repo
+autoreconf -ivf
+./configure
+make
+make install && echo 'Memtier successfully installed' &
+EOF

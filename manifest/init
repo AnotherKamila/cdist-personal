@@ -11,9 +11,10 @@ esac
 __cdistmarker
 __hostname
 __locale "en_US.UTF-8"
+__locale "de_CH.UTF-8"
 if [ -z "$CDIST_NO_PACKAGE_INDEX_UPDATE" ]; then
 	case $(cat $__explorer/os) in
-		debian|ubuntu)
+		debian|ubuntu|devuan)
 			__apt_update_index
 			export require="$require __apt_update_index"
 		;;
@@ -23,6 +24,11 @@ fi
 case $__target_host in
 	entropy)
 		. $__manifest/cozy
+		. $__manifest/all_the_things
+
+		# for now
+		__ethz_asl_host skamila --user kamila
+
 	;;
 
 	ev3)
@@ -37,4 +43,10 @@ case $__target_host in
 
 		__file /etc/systemd/system/ev3dev-leds.service --source $__manifest/files/ev3dev-leds.service
 	;;
+
+	asl*)
+		. $__manifest/cozy
+		__ethz_asl_host skamila --user kamila
+	;;
+
 esac
