@@ -6,6 +6,7 @@ netzh_id=$(cat "$__object/parameter/netzh-id" 2>/dev/null || echo "$__object_id"
 ##### memcached #############################################################
 
 __package memcached
+require="$require __package/memcached" __start_on_boot memcached --state absent
 
 ##### memtier ###############################################################
 
@@ -17,3 +18,7 @@ for pkg in build-essential autoconf automake libpcre3-dev libevent-dev pkg-confi
 done
 
 require="$require __user/$user" __git $memtier_repo --source $memtier_url --owner $user
+
+##### utilities #############################################################
+
+__package pv
