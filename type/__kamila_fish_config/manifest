@@ -1,0 +1,7 @@
+#!/bin/sh
+
+user=$(cat "$__object/parameter/user")
+home=$(cat "$__object/parameter/home"); [ -z "$home" ] && home="/home/$user"
+
+__config_file $home/.config/fish/config.fish  --owner $user --source $__type/files/config.fish
+__config_file $home/.config/fish/aliases.fish --owner $user --source $__type/files/aliases.fish

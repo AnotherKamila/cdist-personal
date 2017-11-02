@@ -1,0 +1,70 @@
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-color',
+# 'man task-sync' or 'man taskrc'
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# Use the command 'task show' to see all defaults and overrides
+
+# First things first!
+weekstart=Monday
+
+# Files
+data.location=~/.task
+
+# Color theme (uncomment one to use)
+include ~/.task/task.theme
+
+report.next.filter=status:pending -extern limit:page
+report.next.columns=id,project,priority,depends,description,size,start.age,scheduled.countdown,due.remaining,until.remaining,tags,entry.age,recur
+report.next.labels=ID,Project,P,D,Description,Sz,Start,Scheduled,Due,Until,Tags,Age,Recur
+
+uda.blocks.type=string
+uda.blocks.label=Blocks
+
+uda.size.type=string
+uda.size.label=Size
+uda.size.values=L,S,XS
+uda.size.default=S
+
+context.nowork=!(project:dcl)
+context.dcl=(project:dcl or project:coding.cdist)
+context.iypt=project:iypt18
+context.school=project:school
+
+report.in.columns     = id,description
+report.in.description = Inbox
+report.in.filter      = status:pending limit:page (+in)
+report.in.labels      = ID,Description
+
+report.extern.description=Simple list of tasks waiting on something external (+extern)
+report.extern.columns=id,priority,project,tags,due,description,size
+report.extern.labels=ID,P,Project,Tags,Due,Description,Sz
+report.extern.sort=urgency-
+report.extern.filter=(status:pending +extern)
+
+report.agenda.description=Weekly agenda
+report.agenda.columns=id,scheduled.countdown,priority,project,tags,due,description,size
+report.agenda.labels=ID,Scheduled,P,Project,Tags,Due,Description,Sz
+report.agenda.sort=scheduled+/,urgency-
+report.agenda.filter=(status:pending)
+
+# from tasksh review -- TODO move to separate file
+uda.reviewed.type=date
+uda.reviewed.label=Reviewed
+report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
+report._reviewed.columns=uuid
+report._reviewed.sort=reviewed+,modified+
+report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
+
+include ~/bin/eisenmux/twreports
+
+uda.priority.values=H,M,,L
+urgency.uda.priority.L.coefficient=-1
+
+
+indent.annotation=4
+nag=''

@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# TODO clean up as it grows, when it becomes easier to see how to organize this
+
+user=$(cat "$__object/parameter/user")
+home=$(cat "$__object/parameter/home"); [ -z "$home" ] && home="/home/$user"
+
+if [ -f "$__object/parameter/graphical" ]; then
+	export EDITOR=subl
+else
+	export EDITOR=vim
+fi
+$__type/files/profile.sh | __config_file $home/.profile --owner $user --source -
+
+__kamila_fish_config --user="$user" --home="$home"
+__kamila_task_config --user="$user" --home="$home"

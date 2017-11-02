@@ -26,6 +26,8 @@ case $__target_host in
 		. $__manifest/cozy
 		. $__manifest/all_the_things
 
+		__kamila_dotfiles --graphical
+
 		# for now
 		__ethz_asl_host skamila --user kamila
 

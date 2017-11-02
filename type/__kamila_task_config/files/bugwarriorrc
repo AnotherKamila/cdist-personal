@@ -1,0 +1,47 @@
+[general]
+targets = my_github
+
+inline_links        = False
+annotation_links    = True
+annotation_comments = False
+
+log.level = DEBUG
+
+# Use hooks to run commands prior to importing from bugwarrior-pull.
+# bugwarrior-pull will run the commands in the order that they are specified
+# below.
+#
+# pre_import: The pre_import hook is invoked after all issues have been pulled
+# from remote sources, but before they are synced to the TW db. If your
+# pre_import script has a non-zero exit code, the `bugwarrior-pull` command will
+# exit early.
+#[hooks]
+#pre_import = /home/someuser/backup.sh, /home/someuser/sometask.sh
+
+# This section is for configuring notifications when bugwarrior-pull runs,
+# and when issues are created, updated, or deleted by bugwarrior-pull.
+# backends currently supported:
+#  - gobject            Linux      python gobject must be installed
+#
+# To configure, adjust the settings below.
+#[notifications]
+# notifications = True
+# backend = gobject
+# only_on_new_tasks = True
+
+[my_github]
+service = github
+github.username = AnotherKamila  # whose repos to look through
+#github.default_priority = M
+#github.add_tags = +github
+
+github.login = AnotherKamila
+github.token = @oracle:eval:cat ~/.github-token
+
+# [my_redmine]
+# service = redmine
+# redmine.url = http://redmine.example.org/
+# redmine.key = c0c4c014cafebabe
+# redmine.user_id = 7
+# redmine.project_name = redmine
+# redmine.add_tags = chiliproject
