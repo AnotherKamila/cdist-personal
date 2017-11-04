@@ -3,5 +3,13 @@
 user=$(cat "$__object/parameter/user")
 home=$(cat "$__object/parameter/home"); [ -z "$home" ] && home="/home/$user"
 
-__config_file $home/.config/fish/config.fish  --owner $user --source $__type/files/config.fish
-__config_file $home/.config/fish/aliases.fish --owner $user --source $__type/files/aliases.fish
+fish_home=$home/.config/fish
+
+__config_file $fish_home/config.fish  --owner $user --source $__type/files/config.fish
+__config_file $fish_home/aliases.fish --owner $user --source $__type/files/aliases.fish
+
+__directory $fish_home/functions
+for f in $__type/files/functions/*; do
+	require="$require __directory/$fish_home/functions" \
+	__config_file $fish_home/functions/$(basename $f) --owner $user --source $f
+done

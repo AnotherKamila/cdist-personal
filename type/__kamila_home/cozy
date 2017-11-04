@@ -1,0 +1,13 @@
+#!/bin/sh
+
+__package fish
+require="__package/fish" __user $user --shell /usr/bin/fish --create-home
+
+group="sudo"; [ $(cat $__global/explorer/os) = "freebsd" ] && group="wheel"
+require="__user/$user" __user_groups $user --group $group
+
+require="__user/$user" __ssh_authorized_keys $user --key "$(cat $__type/files/kamila.pub)"
+
+. $__type/python
+
+__kamila_bin

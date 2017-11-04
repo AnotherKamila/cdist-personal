@@ -19,8 +19,12 @@ data.location=~/.task
 include ~/.task/task.theme
 
 report.next.filter=status:pending -extern limit:page
-report.next.columns=id,project,priority,depends,description,size,start.age,scheduled.countdown,due.remaining,until.remaining,tags,entry.age,recur
-report.next.labels=ID,Project,P,D,Description,Sz,Start,Scheduled,Due,Until,Tags,Age,Recur
+report.next.columns=id,project,priority,depends,description.count,size,brainpower,start.age,scheduled.countdown,due.remaining,until.remaining,tags,entry.age,recur
+report.next.labels=ID,Project,P,D,Description,Sz,B,Start,Scheduled,Due,Until,Tags,Age,Recur
+
+report.list.columns=id,start.age,entry.age,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due,until.remaining,size,brainpower,description.count,urgency
+report.list.labels=ID,Active,Age,D,P,Project,Tags,R,Sch,Due,Until,Sz,B,Description,Urg
+
 
 uda.blocks.type=string
 uda.blocks.label=Blocks
@@ -29,6 +33,12 @@ uda.size.type=string
 uda.size.label=Size
 uda.size.values=L,S,XS
 uda.size.default=S
+
+uda.brainpower.type=string
+uda.brainpower.label=Brainpower
+uda.brainpower.values=L,M,S
+uda.brainpower.default=M
+
 
 context.nowork=!(project:dcl)
 context.dcl=(project:dcl or project:coding.cdist)

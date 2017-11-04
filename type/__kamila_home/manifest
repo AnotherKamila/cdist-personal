@@ -1,0 +1,29 @@
+#!/bin/sh
+
+user=$(cat "$__object/parameter/user")
+home=$(cat "$__object/parameter/home"); [ -z "$home" ] && home=/home/$user
+size=$(cat "$__object/parameter/size")
+
+export user
+export home
+case $size in
+	cozy)
+		__kamila_dotfiles
+		. $__type/cozy
+	;;
+	extra)
+		__kamila_dotfiles
+		. $__type/cozy
+		. $__type/extra
+	;;
+	graphical)
+		__kamila_dotfiles --graphical
+		. $__type/cozy
+		. $__type/extra
+		. $__type/graphical
+	;;
+	*)
+		echo "__kamila_home: bad size: $size" >&2
+		exit 1
+	;;
+esac

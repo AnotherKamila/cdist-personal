@@ -1,7 +1,0 @@
-#!/bin/sh
-
-__package fish
-require="__package/fish" __user kamila --shell /usr/bin/fish --gid sudo --create-home
-require="__user/kamila" __ssh_authorized_keys kamila --key "$(cat $__manifest/files/kamila.pub)"
-
-. $__manifest/python

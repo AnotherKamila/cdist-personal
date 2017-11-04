@@ -23,31 +23,17 @@ fi
 
 case $__target_host in
 	entropy)
-		. $__manifest/cozy
-		. $__manifest/all_the_things
-
-		__kamila_dotfiles --graphical
-
-		# for now
-		__ethz_asl_host skamila --user kamila
-
+		__kamila_home --size graphical
+		__ethz_asl_host skamila --user kamila  # for now
 	;;
 
 	ev3)
-		__user robot
-		require="$require __user/robot" __ssh_authorized_keys robot --key "$(cat $__manifest/files/kamila.pub)"
-
-		. $__manifest/python
-		__file /home/robot/rpyc_server.sh --mode 0755 --source - <<-EOF
-			#!/bin/sh
-			python3 \$(which rpyc_classic.py)
-		EOF
-
+		__kamila_home --size cozy --user robot
 		__file /etc/systemd/system/ev3dev-leds.service --source $__manifest/files/ev3dev-leds.service
 	;;
 
 	asl*)
-		. $__manifest/cozy
+		__kamila_home --size cozy
 		__ethz_asl_host skamila --user kamila
 	;;
 
