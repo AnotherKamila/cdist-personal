@@ -4,7 +4,7 @@ alias o  'xdg-open'
 alias s  'mosh'
 alias tt 'tree -F'
 
-alias t  'task'
+alias t  'tw'
 alias to 'taskopen'
 alias in 'task add +in'
 

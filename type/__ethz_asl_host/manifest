@@ -17,8 +17,20 @@ for pkg in build-essential autoconf automake libpcre3-dev libevent-dev pkg-confi
     __package $pkg
 done
 
-require="$require __user/$user" __git $memtier_repo --source $memtier_url --owner $user
+__git $memtier_repo --source $memtier_url --owner $user
+
+##### my middleware #########################################################
+
+__file /home/$user/middleware.jar --owner $user --source /home/kamila/u/school/asl/build/dist/middleware-${netzh_id}.jar
 
 ##### utilities #############################################################
 
 __package pv
+
+# __apt_source azure-cli \
+# 	--uri https://packages.microsoft.com/repos/azure-cli/ \
+# 	--distribution wheezy \
+# 	--component main
+
+# __package apt-transport-https
+# require="$require __package/apt-transport-https __apt_source/azure-cli __apt_key_uri/azure-cli" __package azure-cli

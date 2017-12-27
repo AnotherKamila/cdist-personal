@@ -5,7 +5,7 @@ home=$(cat "$__object/parameter/home"); [ -z "$home" ] && home="/home/$user"
 
 bindir=$home/bin
 
-__directory $bindir
+require="$require __user/$user" __directory $bindir
 for f in $__type/files/*; do
 	require="$require __directory/$bindir" \
 	__file $bindir/$(basename $f) --source $f --owner $user --mode 755

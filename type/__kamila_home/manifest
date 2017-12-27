@@ -8,16 +8,16 @@ export user
 export home
 case $size in
 	cozy)
-		__kamila_dotfiles
+		__kamila_dotfiles --user $user --home $home
 		. $__type/cozy
 	;;
 	extra)
-		__kamila_dotfiles
+		__kamila_dotfiles --user $user --home $home
 		. $__type/cozy
 		. $__type/extra
 	;;
 	graphical)
-		__kamila_dotfiles --graphical
+		__kamila_dotfiles --user $user --home $home --graphical
 		. $__type/cozy
 		. $__type/extra
 		. $__type/graphical

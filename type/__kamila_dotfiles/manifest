@@ -11,6 +11,7 @@ else
 	export EDITOR=vim
 fi
 $__type/files/profile.sh | __config_file $home/.profile --owner $user --source -
+__config_file $home/.ssh/config --owner $user --source $__type/files/ssh-config
 
 __kamila_fish_config --user="$user" --home="$home"
 __kamila_task_config --user="$user" --home="$home"

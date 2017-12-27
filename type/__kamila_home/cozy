@@ -10,4 +10,4 @@ require="__user/$user" __ssh_authorized_keys $user --key "$(cat $__type/files/ka
 
 . $__type/python
 
-__kamila_bin
+__kamila_bin --user $user --home $home

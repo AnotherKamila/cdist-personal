@@ -10,6 +10,7 @@ set -x PATH ~/bin ~/.local/bin ~/cdist/bin $PATH
 set default_user "kamila"
 
 function fish_greeting
+    alive
     set cnt (task +in +PENDING count)
     [ $cnt -ne 0 ]; and echo "$cnt tasks in inbox"
 end

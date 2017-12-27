@@ -18,13 +18,12 @@ data.location=~/.task
 # Color theme (uncomment one to use)
 include ~/.task/task.theme
 
-report.next.filter=status:pending -extern limit:page
-report.next.columns=id,project,priority,depends,description.count,size,brainpower,start.age,scheduled.countdown,due.remaining,until.remaining,tags,entry.age,recur
-report.next.labels=ID,Project,P,D,Description,Sz,B,Start,Scheduled,Due,Until,Tags,Age,Recur
+report.next.filter=status:pending -extern (pri: or pri:M or pri:H or +next) limit:page
+report.next.columns=id,project,priority,brainpower,size,depends,description.count,start.age,scheduled.remaining,due.remaining,until.remaining,tags,entry.age,recur
+report.next.labels=ID,Project,P,B,Sz,D,Description,Started,Scheduled,Due,Until,Tags,Age,Recur
 
-report.list.columns=id,start.age,entry.age,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due,until.remaining,size,brainpower,description.count,urgency
-report.list.labels=ID,Active,Age,D,P,Project,Tags,R,Sch,Due,Until,Sz,B,Description,Urg
-
+report.list.columns=id,project,priority,brainpower,size,depends,description.count,start.age,scheduled.remaining,due.remaining,until.remaining,tags,entry.age,recur,urgency
+report.list.labels=ID,Project,P,B,Sz,D,Description,Started,Scheduled,Due,Until,Tags,Age,Recur,Urg
 
 uda.blocks.type=string
 uda.blocks.label=Blocks
@@ -36,9 +35,11 @@ uda.size.default=S
 
 uda.brainpower.type=string
 uda.brainpower.label=Brainpower
-uda.brainpower.values=L,M,S
-uda.brainpower.default=M
+uda.brainpower.values=H,M,L
 
+uda.pomodoros.type=numeric
+uda.pomodoros.label=Pomodoros
+uda.pomodoros.default=0
 
 context.nowork=!(project:dcl)
 context.dcl=(project:dcl or project:coding.cdist)
@@ -57,10 +58,10 @@ report.extern.sort=urgency-
 report.extern.filter=(status:pending +extern)
 
 report.agenda.description=Weekly agenda
-report.agenda.columns=id,scheduled.countdown,priority,project,tags,due,description,size
-report.agenda.labels=ID,Scheduled,P,Project,Tags,Due,Description,Sz
+report.agenda.columns=id,scheduled.remaining,priority,project,tags,due,description,size,brainpower
+report.agenda.labels=ID,Scheduled,P,Project,Tags,Due,Description,Sz,B
 report.agenda.sort=scheduled+/,urgency-
-report.agenda.filter=(status:pending)
+report.agenda.filter=(status:pending limit:page)
 
 # from tasksh review -- TODO move to separate file
 uda.reviewed.type=date
@@ -78,3 +79,6 @@ urgency.uda.priority.L.coefficient=-1
 
 indent.annotation=4
 nag=''
+
+
+include ~/u/data/freecinc/taskrc

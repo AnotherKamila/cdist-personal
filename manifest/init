@@ -27,6 +27,10 @@ case $__target_host in
 		__ethz_asl_host skamila --user kamila  # for now
 	;;
 
+	home)
+		__kamila_home --size extra
+	;;
+
 	ev3)
 		__kamila_home --size cozy --user robot
 		__file /etc/systemd/system/ev3dev-leds.service --source $__manifest/files/ev3dev-leds.service
@@ -34,7 +38,10 @@ case $__target_host in
 
 	asl*)
 		__kamila_home --size cozy
-		__ethz_asl_host skamila --user kamila
+		require="$require __kamila_home" __ethz_asl_host skamila --user kamila
+	;;
+	foraslvms*)
+		__ethz_asl_host skamila --user skamila
 	;;
 
 esac
