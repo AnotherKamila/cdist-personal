@@ -3,7 +3,9 @@
 user=$(cat "$__object/parameter/user")
 home=$(cat "$__object/parameter/home"); [ -z "$home" ] && home="/home/$user"
 
-__directory $home/.task
+__package taskwarrior
+
+__directory $home/.task --owner $user
 require="$require __directory/$home/.task"
 
 __config_file $home/.taskrc          --owner $user --source $__type/files/taskrc
@@ -12,3 +14,25 @@ __config_file $home/.task/task.theme --owner $user --source $__type/files/solari
 __directory $home/.config/bugwarrior --parents
 require="$require __directory/$home/.config/bugwarrior" \
 __config_file $home/.config/bugwarrior/bugwarriorrc --owner $user --source $__type/files/bugwarriorrc
+
+case $(cat $__global/explorer/os) in
+	freebsd)
+		__package tex-xetex
+
+		pip2pkg=py27-pip
+		pip2path=/usr/local/bin/pip
+	;;
+	*)
+		__package texlive-xetex
+
+		pip2pkg=python-pip
+		pip2path=/usr/bin/pip2
+	;;
+esac
+__package $pip2pkg
+
+for p in taskwarrior-capsules taskwarrior-subtask-capsule bugwarrior; do
+    require="$require __package/$pip2pkg" __package_pip $p --pip $pip2path
+done
+
+__cron task-sync --user $user --command "task sync >/dev/null 2>/dev/null"

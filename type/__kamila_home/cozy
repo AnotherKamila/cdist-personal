@@ -1,7 +1,9 @@
 #!/bin/sh
 
+[ $(cat $__global/explorer/os) = 'freebsd' ] && pathprefix='/usr/local/bin' || pathprefix='/usr/bin'
+
 __package fish
-require="__package/fish" __user $user --shell /usr/bin/fish --create-home
+require="__package/fish" __user $user --shell $pathprefix/fish --create-home
 
 group="sudo"; [ $(cat $__global/explorer/os) = "freebsd" ] && group="wheel"
 require="__user/$user" __user_groups $user --group $group

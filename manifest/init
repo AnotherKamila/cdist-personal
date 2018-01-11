@@ -7,13 +7,16 @@ case $__target_host in
 	;;
 esac
 
+is_jailed=$(cat $__global/explorer/is-jailed)
+os=$(cat $__global/explorer/os)
 
 __cdistmarker
-__hostname
-__locale "en_US.UTF-8"
-__locale "de_CH.UTF-8"
+[ "$is_jailed"      ] || __hostname
+[ "$os" = 'freebsd' ] || __locale "en_US.UTF-8"
+[ "$os" = 'freebsd' ] || __locale "de_CH.UTF-8"
+
 if [ -z "$CDIST_NO_PACKAGE_INDEX_UPDATE" ]; then
-	case $(cat $__explorer/os) in
+	case $os in
 		debian|ubuntu|devuan)
 			__apt_update_index
 			export require="$require __apt_update_index"

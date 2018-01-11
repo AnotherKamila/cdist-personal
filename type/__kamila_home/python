@@ -1,8 +1,16 @@
 #!/bin/sh
 
-__package python3
-__package python3-pip
-__package python3-venv
-__package python3-dev
+os=$(cat $__global/explorer/os)
+case $os in
+	freebsd)
+		__package py36-pip
+	;;
+	*)
+		__package python3-pip
+		__package python3-venv
+		__package python3-dev
+		require="$require __package/python3-pip" __package_pip rpyc --pip /usr/bin/pip3
+	;;
+esac
 
-require="$require __package/python3-pip" __package_pip rpyc --pip /usr/bin/pip3
+

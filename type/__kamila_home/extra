@@ -1,7 +1,2 @@
 __package graphviz
-__package texlive-xetex
-
-__package_pip taskwarrior-capsules
-__package_pip taskwarrior-subtask-capsule
-__package_pip bugwarrior
 __package html-xml-utils

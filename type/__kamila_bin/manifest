@@ -10,3 +10,5 @@ for f in $__type/files/*; do
 	require="$require __directory/$bindir" \
 	__file $bindir/$(basename $f) --source $f --owner $user --mode 755
 done
+
+__git $bindir/eisenmux --source https://github.com/niknow/eisenmux.git --owner $user
