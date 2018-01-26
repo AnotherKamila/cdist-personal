@@ -30,9 +30,12 @@ log.level           = DEBUG
 
 [my_github]
 service = github
-github.username = AnotherKamila  # whose repos to look through
+# whose repos to look through
+github.username = AnotherKamila
 #github.default_priority = M
 github.add_tags = github
+github.description_template = #{{githubnumber}} - {{githubtitle}}
+github.project_template = opensource.{{project}}
 
 github.login = AnotherKamila
 github.token = @oracle:eval:cat ~/.github-token

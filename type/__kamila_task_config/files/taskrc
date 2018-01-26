@@ -41,6 +41,8 @@ uda.pomodoros.type=numeric
 uda.pomodoros.label=Pomodoros
 uda.pomodoros.default=0
 
+urgency.user.tag.extern.coefficient = -15.0
+
 context.nowork=!(project:dcl)
 context.dcl=(project:dcl or project:coding.cdist)
 context.iypt=project:iypt18

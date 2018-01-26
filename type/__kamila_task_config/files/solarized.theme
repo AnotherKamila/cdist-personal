@@ -15,9 +15,9 @@ color.history.add=
 color.history.done=
 color.history.delete=
 
-color.burndown.pending=
-color.burndown.started=
-color.burndown.done=
+color.burndown.pending=color0 on color3
+color.burndown.started=color0 on color2
+color.burndown.done=color0 on color4
 
 color.sync.added=
 color.sync.changed=
