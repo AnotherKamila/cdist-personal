@@ -35,4 +35,5 @@ for p in taskwarrior-capsules taskwarrior-subtask-capsule bugwarrior; do
     require="$require __package/$pip2pkg" __package_pip $p --pip $pip2path
 done
 
-__cron task-sync --user $user --command "task sync >/dev/null 2>/dev/null"
+__cron task-sync       --user $user --minute '*/5' --command "task sync >/dev/null 2>/dev/null"
+__cron bugwarrior-sync --user $user --minute '*/5' --command "$home/.local/bin/bugwarrior-pull >/dev/null 2>/dev/null"

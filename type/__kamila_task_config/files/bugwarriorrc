@@ -23,19 +23,19 @@ log.level           = DEBUG
 #  - gobject            Linux      python gobject must be installed
 #
 # To configure, adjust the settings below.
-#[notifications]
-# notifications = True
-# backend = gobject
-# only_on_new_tasks = True
+[notifications]
+notifications = True
+backend = gobject
+only_on_new_tasks = True
 
 [my_github]
 service = github
 # whose repos to look through
 github.username = AnotherKamila
-#github.default_priority = M
 github.add_tags = github
 github.description_template = #{{githubnumber}} - {{githubtitle}}
 github.project_template = opensource.{{project}}
+github.exclude_repos = vlaciky
 
 github.login = AnotherKamila
 github.token = @oracle:eval:cat ~/.github-token

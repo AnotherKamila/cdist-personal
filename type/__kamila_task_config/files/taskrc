@@ -18,7 +18,7 @@ data.location=~/.task
 # Color theme (uncomment one to use)
 include ~/.task/task.theme
 
-report.next.filter=status:pending -extern (pri: or pri:M or pri:H or +next) limit:page
+report.next.filter=status:pending -extern limit:page
 report.next.columns=id,project,priority,brainpower,size,depends,description.count,start.age,scheduled.remaining,due.remaining,until.remaining,tags,entry.age,recur
 report.next.labels=ID,Project,P,B,Sz,D,Description,Started,Scheduled,Due,Until,Tags,Age,Recur
 
