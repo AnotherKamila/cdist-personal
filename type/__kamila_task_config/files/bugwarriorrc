@@ -33,7 +33,7 @@ service = github
 # whose repos to look through
 github.username = AnotherKamila
 github.add_tags = github
-github.description_template = #{{githubnumber}} - {{githubtitle}}
+github.description_template = {% if githubtype == "pull_request" %}PR{% endif %}#{{githubnumber}}: {{githubtitle}}
 github.project_template = opensource.{{project}}
 github.exclude_repos = vlaciky
 
