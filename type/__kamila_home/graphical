@@ -1,2 +1,3 @@
 #__package i3wm
+__package i3lock
 __config_file $home/.config/i3/config --owner $user --source $__type/files/i3-config
