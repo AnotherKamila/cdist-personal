@@ -11,7 +11,7 @@ require="$require __directory/$home/.task"
 __config_file $home/.taskrc          --owner $user --source $__type/files/taskrc
 __config_file $home/.task/task.theme --owner $user --source $__type/files/solarized.theme
 
-__directory $home/.config/bugwarrior --parents
+__directory $home/.config/bugwarrior --owner $user --parents
 require="$require __directory/$home/.config/bugwarrior" \
 __config_file $home/.config/bugwarrior/bugwarriorrc --owner $user --source $__type/files/bugwarriorrc
 

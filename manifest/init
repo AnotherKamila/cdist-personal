@@ -47,4 +47,8 @@ case $__target_host in
 		__ethz_asl_host skamila --user skamila
 	;;
 
+	monitoring-playground)
+		__kamila_home --size cozy
+	;;
+
 esac

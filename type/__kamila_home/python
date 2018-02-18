@@ -6,6 +6,7 @@ case $os in
 		__package py36-pip
 	;;
 	*)
+		__package build-essential
 		__package python3-pip
 		__package python3-venv
 		__package python3-dev

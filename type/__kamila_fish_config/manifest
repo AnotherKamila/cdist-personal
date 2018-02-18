@@ -5,11 +5,18 @@ home=$(cat "$__object/parameter/home"); [ -z "$home" ] && home="/home/$user"
 
 fish_home=$home/.config/fish
 
+OLD_CDIST_ORDER_DEPENDENCY=$CDIST_ORDER_DEPENDENCY
+export CDIST_ORDER_DEPENDENCY=1
+
+__directory $fish_home --parents --owner $user
+
 __config_file $fish_home/config.fish  --owner $user --source $__type/files/config.fish
 __config_file $fish_home/aliases.fish --owner $user --source $__type/files/aliases.fish
 
-__directory $fish_home/functions
+__directory $fish_home/functions --owner $user
 for f in $__type/files/functions/*; do
 	require="$require __directory/$fish_home/functions" \
 	__config_file $fish_home/functions/$(basename $f) --owner $user --source $f
 done
+
+export CDIST_ORDER_DEPENDENCY=$OLD_CDIST_ORDER_DEPENDENCY

@@ -8,19 +8,19 @@ export user
 export home
 case $size in
 	cozy)
-		__kamila_dotfiles --user $user --home $home
 		. $__type/cozy
+		require="$require __ssh_authorized_keys/$user" __kamila_dotfiles --user $user --home $home
 	;;
 	extra)
-		__kamila_dotfiles --user $user --home $home
 		. $__type/cozy
 		. $__type/extra
+		require="$require __ssh_authorized_keys/$user" __kamila_dotfiles --user $user --home $home
 	;;
 	graphical)
-		__kamila_dotfiles --user $user --home $home --graphical
 		. $__type/cozy
 		. $__type/extra
 		. $__type/graphical
+		require="$require __ssh_authorized_keys/$user" __kamila_dotfiles --user $user --home $home --graphical
 	;;
 	*)
 		echo "__kamila_home: bad size: $size" >&2
