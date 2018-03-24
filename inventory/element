@@ -1,3 +1,6 @@
-host:element.ksp.sk
-alias:ksp.sk
+trojsten
+alias:ksp
+personal
 trusted
+alias:ksp.sk
+host:element.ksp.sk
