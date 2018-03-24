@@ -1,0 +1,41 @@
+#!/bin/sh
+
+set -e
+
+user=$(cat "$__object/parameter/user")
+home=$(cat "$__object/parameter/home"); [ -z "$home" ] && home=/home/$user
+dest=$(cat "$__object/parameter/dest"); [ -z "$dest" ] && dest=$home/.ssh/config
+
+SEP=':'
+
+get_value() {
+	field=$1
+	tags=$2
+
+	echo $tags | tr ',' '\n' | grep ^$field$SEP | cut -d$SEP -f2
+}
+
+process_host() {
+	host=$1
+	tags=$2
+
+	user=$(get_value user $tags) || true
+	port=$(get_value port $tags) || true
+	echo "Host $host $(get_value alias $tags)"
+	echo "  Hostname $(get_value host $tags)"
+	[ -n "$user" ] && echo "  User $user"
+	[ -n "$port" ] && echo "  Port $port"
+	echo "  ForwardAgent $(get_value trusted $tags | grep yes || echo no)"
+	get_value ssh-config-line $tags | sed 's/^/  /'
+	echo
+}
+
+(
+ 	cat "$__object/parameter/preamble"
+ 	echo
+	cdist inventory list | while read LINE; do
+		host=$(echo $LINE | cut -d' ' -f1)
+		tags=$(echo $LINE | cut -d' ' -f2)
+		process_host $host $tags
+	done
+) | __config_file $dest --owner $user --source -
