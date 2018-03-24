@@ -42,6 +42,9 @@ uda.pomodoros.type=numeric
 uda.pomodoros.label=Pomodoros
 uda.pomodoros.default=0
 
+uda.task_url.type=string
+uda.task_url.label=Task URL
+
 urgency.user.tag.extern.coefficient = -15.0
 
 context.nowork=!(project:dcl)
