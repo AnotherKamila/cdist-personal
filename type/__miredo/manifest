@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+__package miredo
+# __sysctl net.inet6.ip6.forwarding --value 1
+__start_on_boot miredo
+
+require="$require __start_on_boot/miredo" \
+__config_file /usr/local/etc/miredo/miredo.conf \
+	--onchange "service miredo restart" \
+	--source - <<-EOF
+		InterfaceName teredo
+		ServerAddress teredo.remlab.net
+	EOF

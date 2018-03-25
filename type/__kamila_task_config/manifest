@@ -17,14 +17,10 @@ __config_file $home/.config/bugwarrior/bugwarriorrc --owner $user --source $__ty
 
 case $(cat $__global/explorer/os) in
 	freebsd)
-		__package tex-xetex
-
 		pip2pkg=py27-pip
 		pip2path=/usr/local/bin/pip
 	;;
 	*)
-		__package texlive-xetex
-
 		pip2pkg=python-pip
 		pip2path=/usr/bin/pip2
 	;;

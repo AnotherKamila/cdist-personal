@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+domain=$__object_id
+token=$(cat "$__object/parameter/token")
+device=$(cat "$__object/parameter/device")
+
+__package wget
+__package ca_root_nss
+
+__file /usr/local/bin/dynv6.sh --mode 0755 --source $__type/files/dynv6.sh
+__cron dynv6 --user root \
+        --minute "*/5" \
+        --command "token=$token /usr/local/bin/dynv6.sh $domain $device"

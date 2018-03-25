@@ -1,2 +1,11 @@
 __package graphviz
 __package html-xml-utils
+
+case $(cat $__global/explorer/os) in
+    freebsd)
+        __package tex-xetex
+    ;;
+    *)
+        __package texlive-xetex
+    ;;
+esac

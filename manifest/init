@@ -7,31 +7,30 @@ case $__target_host in
 	;;
 esac
 
-is_jailed=$(cat $__global/explorer/is-jailed)
+. $__manifest/secrets
+
+is_jailed=$(cat $__global/explorer/is-freebsd-jail)
 os=$(cat $__global/explorer/os)
 
 __cdistmarker
 [ "$is_jailed"      ] || __hostname
 [ "$os" = 'freebsd' ] || __locale "en_US.UTF-8"
-[ "$os" = 'freebsd' ] || __locale "de_CH.UTF-8"
-
-if [ -z "$CDIST_NO_PACKAGE_INDEX_UPDATE" ]; then
-	case $os in
-		debian|ubuntu|devuan)
-			__apt_update_index
-			export require="$require __apt_update_index"
-		;;
-	esac
-fi
 
 case $__target_host in
 	entropy)
 		__kamila_home --size graphical
-		# __ethz_asl_host skamila --user kamila  # for now
+		# __ethz_asl_host skamila --user kamila
 	;;
 
 	home)
 		__kamila_home --size extra
+	;;
+
+	rpi)
+		__kamila_home --size cozy
+
+		__miredo
+		__ipv6_ddns brloh.dynv6.net --token $DYNV6_TOKEN --device teredo
 	;;
 
 	ev3)

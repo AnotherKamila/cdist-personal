@@ -8,6 +8,8 @@ fish_home=$home/.config/fish
 OLD_CDIST_ORDER_DEPENDENCY=$CDIST_ORDER_DEPENDENCY
 export CDIST_ORDER_DEPENDENCY=1
 
+__package wget  # used in fish config
+
 __directory $fish_home --parents --owner $user
 
 __config_file $fish_home/config.fish  --owner $user --source $__type/files/config.fish
