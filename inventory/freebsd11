@@ -1,0 +1,4 @@
+port:22010
+user:root
+vm-local
+host:localhost
