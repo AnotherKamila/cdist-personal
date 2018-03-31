@@ -10,6 +10,11 @@ if [ -f "$__object/parameter/graphical" ]; then
 else
 	export EDITOR=vim
 fi
+
+if [ -f "$__object/parameter/with-emacs" ]; then
+	export EDITOR="emacsclient -c"
+fi
+
 $__type/files/profile.sh | __config_file $home/.profile --owner $user --source -
 # __config_file $home/.ssh/config  --owner $user --source $__type/files/ssh-config
 __config_file $home/.xbindkeysrc --owner $user --source $__type/files/xbindkeysrc

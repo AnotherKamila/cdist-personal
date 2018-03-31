@@ -18,7 +18,7 @@ __cdistmarker
 
 case $__target_host in
 	entropy)
-		__kamila_home --size graphical
+		__kamila_home --size graphical --with-emacs
 		# __ethz_asl_host skamila --user kamila
 	;;
 

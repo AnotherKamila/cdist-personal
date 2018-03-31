@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+__git $home/.emacs.d --source https://github.com/syl20bnr/spacemacs --owner $user
+# TODO I am _NOT_ including .spacemacs here because I do not wish to break SPC f e d and such, but it should be fixed!
+
+__package silversearcher-ag
+__package shellcheck

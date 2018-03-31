@@ -4,26 +4,30 @@ user=$(cat "$__object/parameter/user")
 home=$(cat "$__object/parameter/home"); [ -z "$home" ] && home=/home/$user
 size=$(cat "$__object/parameter/size")
 
+dotfiles_params=""
+
+[ -f "$__object/parameter/with-emacs" ] && dotfiles_params="$dotfiles_params --with-emacs"
+
 export user
 export home
 case $size in
 	cozy)
 		. $__type/cozy
-		require="$require __ssh_authorized_keys/$user" __kamila_dotfiles --user $user --home $home
 	;;
 	extra)
 		. $__type/cozy
 		. $__type/extra
-		require="$require __ssh_authorized_keys/$user" __kamila_dotfiles --user $user --home $home
 	;;
 	graphical)
 		. $__type/cozy
 		. $__type/extra
 		. $__type/graphical
-		require="$require __ssh_authorized_keys/$user" __kamila_dotfiles --user $user --home $home --graphical
+		dotfiles_params="$dotfiles_params --graphical"
 	;;
 	*)
 		echo "__kamila_home: bad size: $size" >&2
 		exit 1
 	;;
 esac
+
+__kamila_dotfiles --user $user --home $home $dotfiles_params
