@@ -32,8 +32,8 @@ case $__target_host in
 		__miredo
 		__ipv6_ddns brloh.dynv6.net --token $DYNV6_TOKEN --device teredo
 		__cron savetheplants --user root \
-			--command 'gpioctl -c 17 OUT; gpioctl 17 1 ; sleep 20; gpioctl 17 0' \
-			--minute '15' --hour '13' --day_of_week '1,5'
+			--command 'gpioctl -c 17 OUT; gpioctl 17 1 ; sleep 16; gpioctl 17 0' \
+			--hour '15' --minute '40' --day_of_week 'wed,fri,sun'
 	;;
 
 	ev3)
