@@ -3,8 +3,11 @@ if not status --is-interactive
 end
 
 . ~/.profile
+# hack to make PATH work
+set path_value (grep 'export PATH=' ~/.profile | cut -d= -f2 | tr -d '"\'' | tr ':' ' ')
+eval set path_value (echo $path_value)  # expand variables and make it into an array
+set -xg PATH $path_value
 
-set -x PATH ~/bin ~/.local/bin ~/cdist/bin $PATH
 
 # displays "me" instead of username if it is this
 set default_user "kamila"
