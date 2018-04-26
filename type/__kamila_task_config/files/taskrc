@@ -18,6 +18,8 @@ data.location=~/.task
 # Color theme (uncomment one to use)
 include ~/.task/task.theme
 
+color.tag.endgoal=color13
+
 report.next.filter=(status:pending -extern limit:page)
 report.next.columns=id,project,priority,brainpower,size,depends,description.count,start.age,scheduled.remaining,due.remaining,until.remaining,tags,entry.age,recur
 report.next.labels=ID,Project,P,B,Sz,D,Description,Started,Scheduled,Due,Until,Tags,Age,Recur
@@ -62,6 +64,11 @@ report.extern.columns=id,priority,project,tags,due,description,size
 report.extern.labels=ID,P,Project,Tags,Due,Description,Sz
 report.extern.sort=urgency-
 report.extern.filter=(status:pending +extern)
+
+report.today.description=List of tasks scheduled for today
+report.today.filter=sch:tod
+report.today.columns=id,project,priority,brainpower,size,depends,description,start.age,due.remaining,until.remaining,tags,recur
+report.today.labels=ID,Project,P,B,Sz,D,Description,Started,Due,Until,Tags,Recur
 
 report.agenda.description=Weekly agenda
 report.agenda.columns=id,scheduled.remaining,priority,project,tags,due,description,size,brainpower

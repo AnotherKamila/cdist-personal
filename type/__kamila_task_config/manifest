@@ -32,4 +32,4 @@ for p in taskwarrior-capsules taskwarrior-subtask-capsule bugwarrior; do
 done
 
 __cron task-sync       --user $user --minute '*/5' --command "task sync >/dev/null 2>/dev/null"
-__cron bugwarrior-sync --user $user --minute '*/5' --command "$home/.local/bin/bugwarrior-pull >/dev/null 2>/dev/null"
+__cron bugwarrior-sync --user $user --minute '47' --command "$home/.local/bin/bugwarrior-pull >/dev/null 2>/dev/null"

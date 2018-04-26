@@ -36,6 +36,11 @@ case $__target_host in
 			--hour '15' --minute '40' --day_of_week 'wed,fri,sun'
 	;;
 
+	kladivo)
+		#__miredo
+		__ipv6_ddns kladivo.dynv6.net --token $DYNV6_TOKEN --device teredo
+	;;
+
 	ev3)
 		__kamila_home --size cozy --user robot
 		__file /etc/systemd/system/ev3dev-leds.service --source $__manifest/files/ev3dev-leds.service
