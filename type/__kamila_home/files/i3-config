@@ -7,8 +7,8 @@ set $alt Mod1
 set $term          ~/bin/term_in_cwd.sh
 set $launcher      i3-dmenu-desktop --dmenu="~/bin/dmenu.sh"
 set $file_manager  nemo
-set $browser       chromium-browser
-set $browser_pgrep chromium
+set $browser       firefox
+set $browser_pgrep firefox
 
 # --- appearance ---
 font pango:Terminus 9
