@@ -13,6 +13,11 @@ fi
 
 if [ -f "$__object/parameter/with-emacs" ]; then
 	export EDITOR="emacsclient -c"
+
+	__directory   $home/.local/share/applications/ --parents
+	require="$require __directory/$home/.local/share/applications/" \
+		__config_file $home/.local/share/applications/emacsclient_new_frame.desktop \
+		  --owner $user --source $__type/files/emacsclient_new_frame.desktop
 fi
 
 $__type/files/profile.sh | __config_file $home/.profile --owner $user --source -

@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=My Emacsclient (new frame)
+Exec=/usr/bin/emacsclient -c --alternate-editor="" %F
+Icon=emacs
+Type=Application
