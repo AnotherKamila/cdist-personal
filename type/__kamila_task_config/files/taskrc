@@ -49,9 +49,11 @@ uda.task_url.label=Task URL
 
 urgency.user.tag.extern.coefficient = -15.0
 
-context.nowork=!(project:dcl)
+context.nowork=(!(project:dcl))
+context.nocode=((!(project:dcl or project:opensource or project:coding)) or +notcode)
+context.opensource=(project:opensource)
 context.dcl=(project:dcl or project:coding.cdist)
-context.iypt=project:iypt18
+context.iypt=project:iypt19
 context.school=project:school
 
 report.in.columns     = id,description
