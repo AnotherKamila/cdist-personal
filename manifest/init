@@ -20,6 +20,7 @@ case $__target_host in
 	entropy)
 		__kamila_home --size graphical --with-emacs
 		# __ethz_asl_host skamila --user kamila
+		__cron save-the-tiddlers --user kamila --minute '*' --command 'mv /home/kamila/dl/tiddlywiki.html /home/kamila/u/_backups/tiddly/tiddly-$(date "+%Y-%m-%d-%H%M").html'
 	;;
 
 	home)
