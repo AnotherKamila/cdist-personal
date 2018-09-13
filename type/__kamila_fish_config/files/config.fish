@@ -14,8 +14,10 @@ set default_user "kamila"
 
 function fish_greeting
     alive
-    set cnt (task +in +PENDING count)
-    [ $cnt -ne 0 ]; and echo "$cnt tasks in inbox"
+    set incnt (task +in +PENDING count)
+    [ $incnt -ne 0 ]; and echo "$incnt tasks in inbox"
+    set complcnt (completed_today)
+    [ $complcnt -ne 0 ]; and echo "Completed $complcnt tasks today. Keep it up!"
 end
 
 . ~/.config/fish/aliases.fish
