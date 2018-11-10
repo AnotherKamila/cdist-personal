@@ -18,7 +18,7 @@ get_value() {
 has_tag() {
 	field=$1
 	tags=$2
-	echo $tags | tr ',' '\n' | grep ^$field$ >/dev/null
+	echo $tags | tr ',' '\n' | grep -E "^$field(:|$)" >/dev/null
 }
 
 process_host() {
@@ -28,10 +28,11 @@ process_host() {
 	user=$(get_value user $tags) || true
 	port=$(get_value port $tags) || true
 	echo "Host $host $(get_value alias $tags | tr '\n' ' ')"
-	echo "  Hostname $(get_value host $tags)"
+	has_tag host $tags && echo "  Hostname $(get_value host $tags)"
 	[ -n "$user" ] && echo "  User $user"
 	[ -n "$port" ] && echo "  Port $port"
-	echo "  ForwardAgent $(has_tag trusted $tags && echo yes || echo no)"
+	has_tag trusted $tags && echo "  ForwardAgent yes"
+	has_tag v6only  $tags && echo "  AddressFamily inet6"
 	get_value ssh-config-line $tags | sed 's/^/  /'
 	echo
 }
