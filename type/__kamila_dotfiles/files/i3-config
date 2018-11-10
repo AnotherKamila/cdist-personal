@@ -7,8 +7,8 @@ set $alt Mod1
 set $term          ~/bin/term_in_cwd.sh
 set $launcher      i3-dmenu-desktop --dmenu="~/bin/dmenu.sh"
 set $file_manager  nemo
-set $browser       firefox
-set $browser_pgrep firefox
+set $browser       brave
+set $browser_pgrep brave
 
 # --- appearance ---
 font pango:Terminus 9
@@ -149,7 +149,7 @@ bindsym $m+Shift+Right move container to workspace next_on_output
 bindsym $m+Left workspace prev_on_output
 bindsym $m+Shift+Left move container to workspace prev_on_output
 
-#bindsym $m+$alt+F7 move workspace to output next
+bindsym $m+$alt+F7 move workspace to output up
 
 # --- startup programs ---
 #exec --no-startup-id compton -CGf -i0.8 --use-ewmh-active-win -e0.9 -b
