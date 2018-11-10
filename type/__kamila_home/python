@@ -4,14 +4,14 @@ os=$(cat $__global/explorer/os)
 case $os in
 	freebsd)
 		__package py36-pip
+		#require="$require __package/py36-pip" __package_pip --pip /usr/bin/pip3 pipenv
 	;;
 	*)
 		__package build-essential
 		__package python3-pip
 		__package python3-venv
 		__package python3-dev
-		require="$require __package/python3-pip" __package_pip rpyc --pip /usr/bin/pip3
+		#require="$require __package/python3-pip" __package_pip pipenv --pip /usr/bin/pip3
+		#require="$require __package/python3-pip" __package_pip rpyc   --pip /usr/bin/pip3
 	;;
 esac
-
-
