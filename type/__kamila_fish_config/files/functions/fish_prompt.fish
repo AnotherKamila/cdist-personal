@@ -18,12 +18,11 @@ function show_status -d "Shows the last exit status"
   end
 end
 
-# function show_virtualenv -d "Show active python virtual environments"
-#   if set -q VIRTUAL_ENV
-#     set -l venvname (basename "$VIRTUAL_ENV")
-#     prompt_segment normal white " ($venvname)"
-#   end
-# end
+function show_virtualenv -d "Show a *small* indicator when in a python virtual environment"
+  if set -q VIRTUAL_ENV
+    prompt_segment white normal "[V] "
+  end
+end
 
 function show_user -d "Shows user and host"
   if [ "$USER" = "$default_user" ]
@@ -59,6 +58,7 @@ end
 function fish_prompt
   set -g LAST_STATUS $status
   show_status
+  show_virtualenv
   show_user
   show_pwd
   show_prompt

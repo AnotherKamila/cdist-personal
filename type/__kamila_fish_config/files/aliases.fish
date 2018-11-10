@@ -16,6 +16,7 @@ alias gp 'git add -p'
 
 alias py  'ptpython'
 alias py2 'ptpython2'
+alias psh 'pipenv shell --fancy'
 
 alias u 'cd ~/u'
 alias shortps "alias fish_prompt \"echo '> '\""
