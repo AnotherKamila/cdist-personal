@@ -1,0 +1,5 @@
+user:vagrant
+trusted
+host:localhost
+port:2223
+vm-local

@@ -1,0 +1,3 @@
+port:22502
+vm-local
+host:localhost

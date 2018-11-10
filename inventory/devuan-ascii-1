@@ -1,5 +1,5 @@
-user:root
 host:localhost
 vm-local
-vm-devuan-ascii
 port:22200
+vm-devuan-ascii
+user:root
