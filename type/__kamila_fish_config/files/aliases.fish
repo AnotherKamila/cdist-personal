@@ -24,3 +24,5 @@ alias dote "$EDITOR ~/.dotfiles/params ~/.dotfiles/templates ~/.dotfiles/decrypt
 alias dotpull "cd ~/.dotfiles; git pull ; redot.sh"
 
 alias serveme 'python3 -m http.server'
+
+alias gpg 'gpg2'  # who wants gpg1
