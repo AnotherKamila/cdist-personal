@@ -1,6 +1,5 @@
 alias:inteligent.trojsten.sk
-trojsten
-host:inteligent.trojsten.sk
-oldkey
-trusted
 alias:inteligent.ksp.sk
+host:inteligent.trojsten.sk
+trusted
+trojsten

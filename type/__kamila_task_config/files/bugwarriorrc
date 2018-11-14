@@ -59,5 +59,7 @@ gitlab.token = @oracle:eval:cat ~/.ethz-gitlab-token
 gitlab.include_repos = sdn-nat64
 gitlab.only_if_assigned = skamila
 gitlab.also_unassigned = True
+gitlab.filter_merge_requests = False
 gitlab.add_tags = gitlab
+gitlab.description_template = {% if gitlabtype == "pull_request" %}PR{% endif %}#{{gitlabnumber}}: {{gitlabtitle}}
 gitlab.project_template = school.sdn.project
