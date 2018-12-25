@@ -1,7 +1,7 @@
 # managed by cdist: ~/.cdist-personal/type/__kamila_task_config/files/bugwarriorrc
 
 [general]
-targets = my_github, ethz_gitlab
+targets = my_github
 
 inline_links        = False
 annotation_links    = True
@@ -61,5 +61,5 @@ gitlab.only_if_assigned = skamila
 gitlab.also_unassigned = True
 gitlab.filter_merge_requests = False
 gitlab.add_tags = gitlab
-gitlab.description_template = {% if gitlabtype == "pull_request" %}PR{% endif %}#{{gitlabnumber}}: {{gitlabtitle}}
+gitlab.description_template = {% if gitlabtype == "merge_request" %}!{% else %}#{% endif %}{{gitlabnumber}}: {{gitlabtitle}}
 gitlab.project_template = school.sdn.project

@@ -31,8 +31,9 @@ process_host() {
 	has_tag host $tags && echo "  Hostname $(get_value host $tags)"
 	[ -n "$user" ] && echo "  User $user"
 	[ -n "$port" ] && echo "  Port $port"
-	has_tag trusted $tags && echo "  ForwardAgent yes"
-	has_tag v6only  $tags && echo "  AddressFamily inet6"
+	has_tag trusted  $tags && echo "  ForwardAgent yes"
+	has_tag v6only   $tags && echo "  AddressFamily inet6"
+	has_tag vm-local $tags && echo "  IdentityFile ~/.ssh/id_rsa-localonly"
 	get_value ssh-config-line $tags | sed 's/^/  /'
 	echo
 }
