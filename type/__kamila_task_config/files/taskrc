@@ -96,3 +96,6 @@ indent.annotation=4
 nag=''
 
 include ~/u/data/taskwarrior-sync-secrets/includeme.taskrc
+
+include ~/.task/hooks/tw-needs-hook/needs.rc
+needlevel=0

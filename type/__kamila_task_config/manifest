@@ -2,6 +2,8 @@
 
 user=$(cat "$__object/parameter/user")
 home=$(cat "$__object/parameter/home"); [ -z "$home" ] && home="/home/$user"
+bindir=$home/bin
+taskdir=$home/.task
 
 __package taskwarrior
 
@@ -9,7 +11,9 @@ __directory $home/.task --owner $user
 require="$require __directory/$home/.task"
 
 __config_file $home/.taskrc          --owner $user --source $__type/files/taskrc
-__config_file $home/.task/task.theme --owner $user --source $__type/files/solarized.theme
+__config_file $taskdir/task.theme --owner $user --source $__type/files/solarized.theme
+
+__directory $home/.task/scripts/ --owner $user
 
 __directory $home/.config/bugwarrior --owner $user --parents
 require="$require __directory/$home/.config/bugwarrior" \
@@ -28,8 +32,21 @@ esac
 __package $pip2pkg
 
 for p in taskwarrior-capsules taskwarrior-subtask-capsule bugwarrior; do
-    require="$require __package/$pip2pkg" __package_pip $p --pip $pip2path
+	require="$require __package/$pip2pkg" __package_pip $p --pip $pip2path
 done
+
+####### HOOKS #######
+
+for f in $(ls -1 $__type/files/hooks/); do
+	__config_file $taskdir/hooks/$f --owner $user --source $__type/files/hooks/$f
+done
+
+__git $taskdir/hooks/tw-needs-hook --source https://github.com/linuxcaffe/tw-needs-hook.git --owner $user
+
+require="$require __directory/$home/.task/scripts" \
+__link $home/.task/scripts/needs --source $taskdir/hooks/tw-needs-hook/needs.sh --type symbolic
+
+####### CRON #######
 
 __cron task-sync       --user $user --minute '*/5' --command "task sync >/dev/null 2>/dev/null"
 __cron bugwarrior-sync --user $user --minute '47' --command "$home/.local/bin/bugwarrior-pull >/dev/null 2>/dev/null"

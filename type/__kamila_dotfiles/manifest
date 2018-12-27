@@ -7,8 +7,10 @@ home=$(cat "$__object/parameter/home"); [ -z "$home" ] && home="/home/$user"
 
 if [ -f "$__object/parameter/graphical" ]; then
 	export EDITOR=subl
+	export BROWSER=brave-browser
 else
 	export EDITOR=vim
+	export BROWSER=elinks
 fi
 
 if [ -f "$__object/parameter/with-emacs" ]; then
