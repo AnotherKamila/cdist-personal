@@ -42,6 +42,7 @@ for f in $(ls -1 $__type/files/hooks/); do
 done
 
 __git $taskdir/hooks/tw-needs-hook --source https://github.com/linuxcaffe/tw-needs-hook.git --owner $user
+__link $taskdir/hooks/on-exit_needs.sh --source $taskdir/hooks/tw-needs-hook/on-exit_needs.sh --type symbolic
 
 require="$require __directory/$home/.task/scripts" \
 __link $home/.task/scripts/needs --source $taskdir/hooks/tw-needs-hook/needs.sh --type symbolic

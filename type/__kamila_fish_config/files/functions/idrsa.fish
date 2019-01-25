@@ -1,7 +1,8 @@
 function idrsa -d "cat's your *public* SSH key; generates one if needed"
     set KEY "$HOME/.ssh/id_rsa.pub"
     if [ ! -e "$KEY" ]
-        ssh-keygen -t rsa -C "(whoami)@(hostname)-(date '+%Y-%m-%d')" -b 4096
+        set -l comment "(whoami)@(hostname)-(date '+%Y-%m-%d')"
+        ssh-keygen -t rsa -C "$comment" -b 4096
     end
     # sanity check
     if head -n1 "$KEY" | grep PRIVATE >/dev/null

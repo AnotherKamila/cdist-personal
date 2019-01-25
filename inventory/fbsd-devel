@@ -1,0 +1,4 @@
+host:localhost
+port:22227
+vm-local
+trusted
